@@ -1,0 +1,30 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+class Similarity:
+  def __init__(self,text):
+    self.text = text
+    self.vectorizer = TfidfVectorizer()
+    self.tfidf_matrix = vectorizer.fit_transform(self.text)
+
+  def get_most_similar_to_first (self):
+    similarity_matrix = cosine_similarity(self.tfidf_matrix)
+    similarities = similarity_matrix[0][1:]
+    most_similar_doc = 2 + similarities.argmax()
+    return most_similar_doc
+
+
+
+if __name__ == "__main__":
+  
+   texts = [
+        "I'd like an apple.",
+        "An apple a day keeps the doctor away.",
+        "Never compare an apple to an orange.",
+        "I prefer scikit-learn to orange."
+    ]
+
+
+simiarity_checker =Similarity(texts)
+similarity_score = simiarity_checker.get_most_similar_to_first()
+print(similarity_score )
